@@ -3,273 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSM26 Assistant - Dashboard</title>
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=COQIBPV6uUS6RLza0wez5JxK-lSWsk4zmTP8i0tTulFePEZQmqI4_sJDmRpSQPSoomw2CmKmHYWNVuuOw3CZk746669zAw9bqIVB3_8gg8AuE0MedRHyLkJp4_aewea9a3MEsFkp8QZM9dFy6WbVuoW_ZP3yslD3jQjhLvXyWp5U7spUdH4XWdLmqetjr5uBAei0O7qjp8NL6dZ_Kt9JJ3yGarcz9-DUKACczCJQkW3FS0O9WXerfhO6Z2cFDkfW" charset="UTF-8"></script><style>
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background: #f0f0f0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #667eea;
-            text-align: center;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .card {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #667eea;
-        }
-        .card h2 {
-            color: #667eea;
-            margin-top: 0;
-        }
-        .card p {
-            margin: 8px 0;
-            color: #333;
-        }
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        button {
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        button:hover {
-            background: #764ba2;
-        }
-        button.active {
-            background: #764ba2;
-            font-weight: bold;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
+    <title>OSM26 Assistant</title>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=9t-HjSEJeby9NjLS6TU8MWppiF-KQ7Pk7XNPNO2EyZFmp6V22GFwMRunbwFIGsH5g6sGjAYM3G16ZFbgR35pjHg3jTpyeWE-K2THmh4cZqBewl3wJs-6_2Wp0o-baheS2dqEdUSKmuV9uugJ0ZFWocdTeK6Sc5BermKV4KRHGJSDwa1G7xEtZARdHThUT1b4fXdAcDRlvwWTlYaaxbSPsT1_EnBGk92nj7DoisYBu2GxTpa717YQWRovdm3rbgNCIrCoTsfXnrxMaOu4Z6s6hg" charset="UTF-8"></script><style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+        .navbar{background:#fff;padding:15px 30px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;position:sticky;top:20px;z-index:100}
+        .navbar h1{color:#667eea;font-size:24px}.nav-btn{padding:10px 20px;background:#667eea;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold}
+        .nav-btn:hover{background:#764ba2}
+        .container{max-width:1400px;margin:0 auto}.tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+        .tab-btn{padding:12px 24px;background:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:bold;color:#666;box-shadow:0 3px 10px rgba(0,0,0,0.1);transition:all 0.3s}
+        .tab-btn.active{background:#667eea;color:#fff;box-shadow:0 5px 20px rgba(102,126,234,0.4)}
+        .tab-content{display:none}.tab-content.active{display:block}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:30px}
+        .card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);transition:transform 0.3s}
+        .card:hover{transform:translateY(-5px)}.card h2{color:#667eea;margin-bottom:15px;font-size:18px}.card p{color:#666;line-height:1.6;margin:8px 0}
+        .badge{display:inline-block;padding:6px 12px;background:#f0f4ff;color:#667eea;border-radius:20px;font-size:12px;font-weight:bold;margin-right:8px;margin-top:10px}
+        .btn{display:inline-block;padding:10px 20px;background:#667eea;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-top:15px;transition:all 0.3s;font-weight:bold}
+        .btn:hover{background:#764ba2}.btn-success{background:#4caf50}.btn-success:hover{background:#45a049}
+        .loading{text-align:center;padding:40px;color:#666}.spinner{border:4px solid #f3f3f3;border-top:4px solid #667eea;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;margin:0 auto 20px}
+        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+        .table{width:100%;border-collapse:collapse;margin-top:20px}.table th{background:#f5f5f5;padding:12px;text-align:left;color:#333;font-weight:bold}.table td{padding:12px;border-bottom:1px solid #eee}
+        .table tr:hover{background:#f9f9f9}
+        .stat{display:inline-block;margin-right:20px;font-size:14px}.stat-value{font-weight:bold;color:#667eea;font-size:18px}
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <h1>🎮 OSM26 Assistant</h1>
+        <button class="nav-btn" onclick="location.reload()">🔄 Recarregar</button>
+    </div>
+
     <div class="container">
-        <h1>🎮 OSM26 Assistant - Dashboard</h1>
-        <p style="text-align: center; color: #666;">Sistema de análise tática e recomendações para OSM26</p>
-        
         <div class="tabs">
-            <button class="active" onclick="showTab('dashboard')">📊 Dashboard</button>
-            <button onclick="showTab('matches')">⚽ Próximos Jogos</button>
-            <button onclick="showTab('formations')">🎯 Formações</button>
-            <button onclick="showTab('strategy')">📈 Estratégia</button>
-            <button onclick="showTab('players')">👥 Elenco</button>
+            <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('matches')">⚽ Jogos</button>
+            <button class="tab-btn" onclick="switchTab('formations')">🎯 Formações</button>
+            <button class="tab-btn" onclick="switchTab('players')">👥 Elenco</button>
         </div>
 
         <!-- DASHBOARD -->
         <div id="dashboard" class="tab-content active">
-            <h2>📊 Meus Times (4 Slots)</h2>
-            <div class="grid">
-                <div class="card">
-                    <h2>🏆 Slot 1</h2>
-                    <p><strong>Time:</strong> Seu Time 1</p>
-                    <p><strong>Liga:</strong> Série A</p>
-                    <p><strong>Posição:</strong> 5º lugar</p>
-                    <p><strong>Pontos:</strong> 450 pts</p>
-                    <p><strong>Orçamento:</strong> R$ 50M</p>
-                </div>
-                <div class="card">
-                    <h2>🏆 Slot 2</h2>
-                    <p><strong>Time:</strong> Seu Time 2</p>
-                    <p><strong>Liga:</strong> Série B</p>
-                    <p><strong>Posição:</strong> 8º lugar</p>
-                    <p><strong>Pontos:</strong> 380 pts</p>
-                    <p><strong>Orçamento:</strong> R$ 35M</p>
-                </div>
-                <div class="card">
-                    <h2>🏆 Slot 3</h2>
-                    <p><strong>Time:</strong> Seu Time 3</p>
-                    <p><strong>Liga:</strong> Série C</p>
-                    <p><strong>Posição:</strong> 12º lugar</p>
-                    <p><strong>Pontos:</strong> 420 pts</p>
-                    <p><strong>Orçamento:</strong> R$ 25M</p>
-                </div>
-                <div class="card">
-                    <h2>🏆 Slot 4</h2>
-                    <p><strong>Time:</strong> Seu Time 4</p>
-                    <p><strong>Liga:</strong> Série D</p>
-                    <p><strong>Posição:</strong> 15º lugar</p>
-                    <p><strong>Pontos:</strong> 340 pts</p>
-                    <p><strong>Orçamento:</strong> R$ 20M</p>
-                </div>
+            <div class="grid" id="slots-container">
+                <div class="loading"><div class="spinner"></div><p>Carregando slots...</p></div>
             </div>
         </div>
 
         <!-- MATCHES -->
         <div id="matches" class="tab-content">
-            <h2>⚽ Próximos Jogos (7 dias)</h2>
-            <div class="grid">
-                <div class="card">
-                    <h2>Seu Time vs Adversário A</h2>
-                    <p><strong>Data:</strong> 25/09/2026 - 20:00</p>
-                    <p><strong>Liga:</strong> Série A</p>
-                    <p><strong>Local:</strong> Casa</p>
-                    <p>⏰ Em 2 dias</p>
-                </div>
-                <div class="card">
-                    <h2>Seu Time vs Adversário B</h2>
-                    <p><strong>Data:</strong> 27/09/2026 - 18:00</p>
-                    <p><strong>Liga:</strong> Série A</p>
-                    <p><strong>Local:</strong> Fora</p>
-                    <p>⏰ Em 4 dias</p>
-                </div>
-                <div class="card">
-                    <h2>Seu Time vs Adversário C</h2>
-                    <p><strong>Data:</strong> 30/09/2026 - 19:30</p>
-                    <p><strong>Liga:</strong> Série A</p>
-                    <p><strong>Local:</strong> Casa</p>
-                    <p>⏰ Em 7 dias</p>
-                </div>
+            <h2>⚽ Próximos Jogos</h2>
+            <div class="grid" id="matches-container">
+                <div class="loading"><div class="spinner"></div><p>Carregando jogos...</p></div>
             </div>
         </div>
 
         <!-- FORMATIONS -->
         <div id="formations" class="tab-content">
-            <h2>🎯 Recomendador de Formações com IA</h2>
-            <div class="card">
-                <h2>Recomendação para Seu Time vs Adversário A</h2>
-                <p><strong>Formação Recomendada:</strong> 4-3-3</p>
-                <p><strong>Tática:</strong> Ataque equilibrado com defesa sólida</p>
-                <p><strong>Goleiro:</strong> Seu Melhor Goleiro (98 OVR)</p>
-                <p><strong>Defesa:</strong> Zagueiro 1, Zagueiro 2, Lateral 1, Lateral 2</p>
-                <p><strong>Meio:</strong> Meia 1, Meia 2, Meia 3</p>
-                <p><strong>Ataque:</strong> Extrema Esquerda, Centroavante, Extrema Direita</p>
-                <p style="margin-top: 15px; color: #666;"><strong>ℹ️ Análise:</strong> O adversário joga com 4-2-4. Recomendamos 4-3-3 para ter mais estabilidade no meio-campo e explorar os flancos.</p>
-            </div>
-        </div>
-
-        <!-- STRATEGY -->
-        <div id="strategy" class="tab-content">
-            <h2>📈 Estratégia de Evolução (4 semanas)</h2>
-            <div class="card">
-                <h2>Semana 1 - Limpeza do Squad</h2>
-                <p>✅ Venda 3 jogadores com baixo desempenho</p>
-                <p>✅ Negocie lesionados com desconto</p>
-                <p>✅ Estimativa: +R$ 5M</p>
-            </div>
-            <div class="card">
-                <h2>Semana 2 - Aquisições Estratégicas</h2>
-                <p>✅ Compre 2 talentos jovens com alto potencial</p>
-                <p>✅ Reforce posição crítica: Meia</p>
-                <p>✅ Investimento: R$ 4M</p>
-            </div>
-            <div class="card">
-                <h2>Semana 3 - Desenvolvimento</h2>
-                <p>✅ Treine jogadores com potencial alto</p>
-                <p>✅ Aumente form dos titulares</p>
-                <p>✅ Prepare squad para próxima temporada</p>
-            </div>
-            <div class="card">
-                <h2>Semana 4 - Consolidação</h2>
-                <p>✅ Negocie excedentes de positions</p>
-                <p>✅ Revise tática baseado em resultados</p>
-                <p>✅ Máximo ganho: R$ 8M</p>
+            <h2>🎯 Recomendador IA de Formações</h2>
+            <div id="formation-container" class="card">
+                <p>Selecione um jogo para ver a recomendação de formação baseada em IA</p>
             </div>
         </div>
 
         <!-- PLAYERS -->
         <div id="players" class="tab-content">
             <h2>👥 Seu Elenco</h2>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tr style="background: #667eea; color: white;">
-                        <th style="padding: 10px; text-align: left;">Jogador</th>
-                        <th style="padding: 10px; text-align: left;">Posição</th>
-                        <th style="padding: 10px; text-align: center;">Idade</th>
-                        <th style="padding: 10px; text-align: center;">OVR</th>
-                        <th style="padding: 10px; text-align: center;">Form</th>
-                        <th style="padding: 10px; text-align: left;">Status</th>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Jogador</th>
+                        <th>Posição</th>
+                        <th>Idade</th>
+                        <th>Forma</th>
+                        <th>Status</th>
                     </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
-                        <td style="padding: 10px;">Goleiro 1</td>
-                        <td style="padding: 10px;">GK</td>
-                        <td style="padding: 10px; text-align: center;">28</td>
-                        <td style="padding: 10px; text-align: center;">98</td>
-                        <td style="padding: 10px; text-align: center;">9/10</td>
-                        <td style="padding: 10px;">✅ OK</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
-                        <td style="padding: 10px;">Zagueiro 1</td>
-                        <td style="padding: 10px;">CB</td>
-                        <td style="padding: 10px; text-align: center;">26</td>
-                        <td style="padding: 10px; text-align: center;">95</td>
-                        <td style="padding: 10px; text-align: center;">8/10</td>
-                        <td style="padding: 10px;">✅ OK</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
-                        <td style="padding: 10px;">Lateral 1</td>
-                        <td style="padding: 10px;">LB</td>
-                        <td style="padding: 10px; text-align: center;">24</td>
-                        <td style="padding: 10px; text-align: center;">88</td>
-                        <td style="padding: 10px; text-align: center;">7/10</td>
-                        <td style="padding: 10px;">🔴 Lesão Leve</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
-                        <td style="padding: 10px;">Meia 1</td>
-                        <td style="padding: 10px;">CM</td>
-                        <td style="padding: 10px; text-align: center;">27</td>
-                        <td style="padding: 10px; text-align: center;">92</td>
-                        <td style="padding: 10px; text-align: center;">8/10</td>
-                        <td style="padding: 10px;">✅ OK</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #ddd;">
-                        <td style="padding: 10px;">Atacante 1</td>
-                        <td style="padding: 10px;">ST</td>
-                        <td style="padding: 10px; text-align: center;">25</td>
-                        <td style="padding: 10px; text-align: center;">96</td>
-                        <td style="padding: 10px; text-align: center;">9/10</td>
-                        <td style="padding: 10px;">✅ OK</td>
-                    </tr>
-                </table>
-            </div>
+                </thead>
+                <tbody id="players-body">
+                    <tr><td colspan="5" style="text-align:center;">Carregando...</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script>
-        function showTab(tabName) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Remove active from all buttons
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active to clicked button
-            event.target.classList.add('active');
+        function switchTab(name) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'))
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'))
+            document.getElementById(name).classList.add('active')
+            event.target.classList.add('active')
+        }
+
+        window.addEventListener('load', () => {
+            loadDashboard()
+            loadMatches()
+            loadPlayers()
+        })
+
+        function loadDashboard() {
+            const slots = [
+                {id: 1, team: 'Seu Time 1', position: 5, points: 450, budget: 'R$ 50M'},
+                {id: 2, team: 'Seu Time 2', position: 8, points: 380, budget: 'R$ 35M'},
+                {id: 3, team: 'Seu Time 3', position: 12, points: 340, budget: 'R$ 25M'},
+                {id: 4, team: 'Seu Time 4', position: 15, points: 280, budget: 'R$ 20M'}
+            ]
+
+            document.getElementById('slots-container').innerHTML = slots.map(s => `
+                <div class="card">
+                    <h2>🏆 Slot ${s.id}</h2>
+                    <p><strong>Time:</strong> ${s.team}</p>
+                    <p><strong>Posição:</strong> ${s.position}º lugar</p>
+                    <p><strong>Pontos:</strong> ${s.points}</p>
+                    <p><strong>Orçamento:</strong> ${s.budget}</p>
+                    <button class="btn btn-success" onclick="alert('Detalhes do Slot ${s.id}')">Ver Detalhes</button>
+                </div>
+            `).join('')
+        }
+
+        function loadMatches() {
+            const matches = [
+                {opponent: 'Adversário A', date: 'Amanhã às 20:00', home: true},
+                {opponent: 'Adversário B', date: '27 de Setembro às 18:00', home: false},
+                {opponent: 'Adversário C', date: '30 de Setembro às 19:00', home: true}
+            ]
+
+            document.getElementById('matches-container').innerHTML = matches.map((m, i) => `
+                <div class="card">
+                    <h2>⚽ ${m.opponent}</h2>
+                    <p><strong>Data:</strong> ${m.date}</p>
+                    <p><strong>Local:</strong> ${m.home ? '🏟️ Casa' : '✈️ Fora'}</p>
+                    <button class="btn" onclick="getFormation(${i})">🎯 IA Recomenda</button>
+                </div>
+            `).join('')
+        }
+
+        function loadPlayers() {
+            const players = [
+                {name: 'Goleiro', pos: 'GK', age: 28, form: 9, status: 'Ok'},
+                {name: 'Zagueiro 1', pos: 'CB', age: 26, form: 8, status: 'Ok'},
+                {name: 'Zagueiro 2', pos: 'CB', age: 27, form: 8, status: 'Ok'},
+                {name: 'Lateral E', pos: 'LB', age: 24, form: 7, status: 'Ok'},
+                {name: 'Lateral D', pos: 'RB', age: 25, form: 7, status: 'Lesão'},
+                {name: 'Meia 1', pos: 'CM', age: 27, form: 8, status: 'Ok'},
+                {name: 'Meia 2', pos: 'CM', age: 26, form: 7, status: 'Ok'},
+                {name: 'Ponta E', pos: 'LW', age: 24, form: 9, status: 'Ok'},
+                {name: 'Centroavante', pos: 'ST', age: 25, form: 9, status: 'Ok'}
+            ]
+
+            document.getElementById('players-body').innerHTML = players.map(p => `
+                <tr>
+                    <td><strong>${p.name}</strong></td>
+                    <td>${p.pos}</td>
+                    <td>${p.age}</td>
+                    <td><span class="badge">${p.form}/10</span></td>
+                    <td>${p.status}</td>
+                </tr>
+            `).join('')
+        }
+
+        function getFormation(index) {
+            const formations = [
+                '4-3-3: Defesa sólida contra ataque rápido',
+                '3-5-2: Mais criatividade e poder no meio',
+                '4-2-3-1: Equilíbrio perfeito'
+            ]
+            document.getElementById('formation-container').innerHTML = `
+                <h3>✅ Recomendação IA</h3>
+                <p><strong>Formação:</strong> ${formations[index]}</p>
+                <p><strong>Tática:</strong> Pressão alta + transição rápida</p>
+                <p><strong>Alterações:</strong> Coloque seu melhor atacante</p>
+                <button class="btn btn-success" onclick="alert('Formação aplicada!')">✅ Aplicar</button>
+            `
         }
     </script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"55d6c902a8a143b1ab6c5051b2a1f75b","spa":2}' crossorigin="anonymous"></script>
